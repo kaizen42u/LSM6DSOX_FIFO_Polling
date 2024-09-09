@@ -136,7 +136,7 @@ void LSM6DSOXFIFO::print(void)
 
     log("[IMU] [%4lu ms], ", delta_millis);
     if (data.acceleration_data_ready)
-        log("Acc: [%5.2f, %5.2f, %5.2f] G, ", data.acceleration_data.X / 1000.0, data.acceleration_data.Y / 1000.0, data.acceleration_data.Z / 1000.0); // Acceleration
+        log("Acc: [%6.3f, %6.3f, %6.3f] G, ", data.acceleration_data.X / 1000.0, data.acceleration_data.Y / 1000.0, data.acceleration_data.Z / 1000.0); // Acceleration
     if (data.rotation_data_ready)
         log("Gyro: [%8.2f, %8.2f, %8.2f] DPS", data.rotation_data.X / 1000.0, data.rotation_data.Y / 1000.0, data.rotation_data.Z / 1000.0); // Angular Velocity
     log("%s", "\n");
@@ -162,7 +162,7 @@ int LSM6DSOXFIFO::log(const char *format, ...) const
 {
     if (!logCallback)
         return 0;
-    char buffer[64] = {'\0'};
+    char buffer[64];
     int ret_val;
     va_list va;
     va_start(va, format);
